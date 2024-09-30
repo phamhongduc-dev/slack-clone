@@ -1,9 +1,12 @@
-interface Props {
-  params: {
-    workspaceId: string
-  }
-}
+'use client'
 
-export default function WorkSpaceIPage({ params }: Props) {
-  return <div>id: {params.workspaceId}</div>
+import { useWorkspaceId } from '@/hooks/use-workspace-id'
+import { useGetWorkspace } from '@/features/workspaces/api/use-get-workspace'
+
+export default function WorkSpaceIPage() {
+  const workspaceId = useWorkspaceId()
+
+  const { data, isLoading } = useGetWorkspace({ id: workspaceId })
+
+  return <div>id: {JSON.stringify(data)}</div>
 }
