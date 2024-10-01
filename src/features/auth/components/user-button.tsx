@@ -25,9 +25,9 @@ export default function UserButton() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <Avatar className='size-10 hover:opacity-75 transition'>
-          <AvatarImage src={image} alt={name} />
-          <AvatarFallback className='bg-sky-500 text-white'>{avatarFallback}</AvatarFallback>
+        <Avatar className='rounded-md size-10 hover:opacity-75 transition'>
+          <AvatarImage className='rounded-md' src={image} alt={name} />
+          <AvatarFallback className='rounded-md bg-sky-500 text-white text-xs'>{avatarFallback}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
