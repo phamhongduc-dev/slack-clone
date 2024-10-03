@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils'
 
 import Hint from './hint'
 import { Button } from './ui/button'
+import { EmojiPopover } from './emoji-popover'
 
 import 'quill/dist/quill.snow.css'
 
@@ -123,6 +124,12 @@ export default function Editor({
     }
   }
 
+  const onEmojiSelect = (emoji: any) => {
+    const quill = quillRef.current
+
+    quill?.insertText(quill.getSelection()?.index || 0, emoji.native)
+  }
+
   const isEmpty = text.replace(/<(.|\n)*?>/g, '').trim().length === 0
 
   return (
@@ -135,11 +142,11 @@ export default function Editor({
               <PiTextAa className='size-4' />
             </Button>
           </Hint>
-          <Hint label='Emoji'>
-            <Button disabled={disabled} size='iconSm' variant='ghost' onClick={() => {}}>
+          <EmojiPopover onEmojiSelect={onEmojiSelect}>
+            <Button disabled={disabled} size='iconSm' variant='ghost'>
               <Smile className='size-4' />
             </Button>
-          </Hint>
+          </EmojiPopover>
           {variant === 'create' && (
             <Hint label='Attach file'>
               <Button disabled={disabled} size='iconSm' variant='ghost' onClick={() => {}}>
@@ -179,11 +186,15 @@ export default function Editor({
           )}
         </div>
       </div>
-      <div className='p-2 text-[10px] text-muted- flex justify-end'>
-        <p>
-          <strong>Shift + Return</strong> to add a new line
-        </p>
-      </div>
+      {variant === 'create' && (
+        <div
+          className={cn('p-2 text-[10px] text-muted- flex justify-end opacity-0 transition', !isEmpty && 'opacity-100')}
+        >
+          <p>
+            <strong>Shift + Return</strong> to add a new line
+          </p>
+        </div>
+      )}
     </div>
   )
 }
