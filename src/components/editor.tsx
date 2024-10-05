@@ -25,7 +25,7 @@ interface EditorProps {
   placeholder?: string
   defaultValue?: Delta | Op[]
   disabled?: boolean
-  innerRef: MutableRefObject<Quill | null>
+  innerRef?: MutableRefObject<Quill | null>
   variant?: 'create' | 'update'
 }
 
@@ -206,7 +206,7 @@ export default function Editor({
           )}
           {variant === 'update' && (
             <div className='ml-auto flex items-center gap-x-2'>
-              <Button disabled={disabled} size='sm' onClick={() => {}} variant='outline'>
+              <Button disabled={disabled} size='sm' onClick={onCancel} variant='outline'>
                 Cancel
               </Button>
               <Button
