@@ -5,6 +5,7 @@ import Hint from './hint'
 import { Thumbnail } from './thumbnail'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import { Doc, Id } from '../../convex/_generated/dataModel'
+import Toolbar from './toolbar'
 
 const Renderer = dynamic(() => import('@/components/renderer'), { ssr: false })
 
@@ -106,6 +107,17 @@ export function Message({
           {updatedAt && <span className='text-xs text-muted-foreground'>(edited)</span>}
         </div>
       </div>
+      {!isEditing && (
+        <Toolbar
+          isAuthor={isAuthor}
+          isPending={false}
+          handleEdit={() => setIsEditingId(id)}
+          handleThread={() => {}}
+          handleDelete={() => {}}
+          handleReaction={() => {}}
+          hideThreadButton={hideThreadButton}
+        />
+      )}
     </div>
   )
 }
