@@ -4,7 +4,7 @@ import { AlertTriangle, HashIcon, Loader, MessageSquareText, SendHorizonal } fro
 
 import { useCurrentMember } from '@/features/members/api/use-current-member'
 import { useGetWorkspace } from '@/features/workspaces/api/use-get-workspace'
-import { useGetMember } from '@/features/members/api/use-get-members'
+import { useGetMembers } from '@/features/members/api/use-get-members'
 import { useGetChannels } from '@/features/channels/api/use-get-channels'
 import { useCreateChannelModal } from '@/features/channels/store/use-create-channel-modal'
 
@@ -25,7 +25,7 @@ export default function WorkspaceSidebar() {
   const { data: member, isLoading: memberLoading } = useCurrentMember({ workspaceId })
   const { data: workspace, isLoading: workspaceLoading } = useGetWorkspace({ id: workspaceId })
   const { data: channels, isLoading: channelsLoading } = useGetChannels({ workspaceId })
-  const { data: members, isLoading: membersLoading } = useGetMember({ workspaceId })
+  const { data: members, isLoading: membersLoading } = useGetMembers({ workspaceId })
 
   if (memberLoading || workspaceLoading) {
     return (
