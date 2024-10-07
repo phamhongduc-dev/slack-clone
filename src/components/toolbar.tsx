@@ -26,7 +26,7 @@ export default function Toolbar({
   return (
     <div className='absolute top-0 right-5'>
       <div className='group-hover:opacity-100 opacity-0 transition-opacity border bg-white rounded-md shadow-sm'>
-        <EmojiPopover onEmojiSelect={(emoji) => handleReaction(emoji.native)} hint='Add reaction'>
+        <EmojiPopover onEmojiSelect={(emoji) => handleReaction(emoji)} hint='Add reaction'>
           <Button variant='ghost' size='iconSm' disabled={isPending}>
             <Smile className='size-4' />
           </Button>
